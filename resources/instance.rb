@@ -12,4 +12,5 @@ attribute :port,			:kind_of => Integer, :default => 11211
 attribute :max_connections,	:kind_of => Integer, :default => 1024
 attribute :cachesize,		:kind_of => Integer, :default => 64
 attribute :service_user,	:kind_of => String, :default => 'memcached'
+attribute :enabled,   :kind_of => String, :default => 'yes'
 attribute :options,			:kind_of => String

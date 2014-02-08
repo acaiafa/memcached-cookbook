@@ -5,7 +5,7 @@ Adding cookbook to setup memcached.
 Requirements
 ------------
 
-This cookbook CentOS.  Requires Chef 0.7.10 or higher for Lightweight Resource
+This cookbook supports Debian/RHEL systems.  Requires Chef 0.7.10 or higher for Lightweight Resource
 and Provider support. 
 
 

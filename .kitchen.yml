@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: do_ubuntu_12.04_11.8.2
+    driver_config:
+      provider: virtualbox
+      box: do_ubuntu_12.04_11.8.2
+      require_chef_omnibus: true
+suites:
+  - name: memcached
+    run_list:
+      - recipe[memcached::testing]
+    attributes:
+      memcached:
+        test: "127.0.0.1"
+      platform_family: "debian"

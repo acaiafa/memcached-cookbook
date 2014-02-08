@@ -15,6 +15,14 @@ default[:memcached][:service_user] = "memcached"
 
 default[:memcached][:options] = ""
 
-default[:memcached][:config_dir] = "/etc/sysconfig"
-
 default[:memcached][:init_dir] = "/etc/init.d"
+
+
+case node['platform_family']
+when 'fedora', 'rhel', 'centos'
+  default[:memcached][:config_dir] = "/etc/sysconfig"
+  default[:memcached][:init_dir] = "/etc/init.d"
+when 'ubuntu', 'debian'
+  default[:memcached][:config_dir] = "/etc"
+  default[:memcached][:options_dir] = "/etc/default"
+end

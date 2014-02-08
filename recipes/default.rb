@@ -4,27 +4,30 @@
 #
 #install package
 package "memcached" do
-    action :install
+  action :install
 end
 
 # removing default init script and sysconfig settings
-file "#{node[:memcached][:init_dir]}/memcached" do
-	action :delete
+case node['platform_family']
+when 'centos','rhel','fedora'
+  file "#{node[:memcached][:init_dir]}/memcached" do
+    action :delete
+  end
+
+  ##Disable services on centos family Services
+  service "memcached" do
+    supports :status => true, :restart => true, :start => true, :stop => true
+    action [ :disable ]
+  end
 end
 
-file "#{node[:memcached][:config_dir]}/memcached" do
-	action :delete
+file "#{node[:memcached][:options_dir]}/memcached" do
+  action :delete
 end
 
 ##add ohai plugin
-cookbook_file "/etc/chef/ohai_plugins/memcache-info.rb" do 
-    source "plugins/memcache-info.rb"
-    owner "root"
-    group "root"
-end
-
-#Services
-service "memcached" do
-    supports :status => true, :restart => true, :start => true, :stop => true
-    action [ :disable ]
-end
+#cookbook_file "/etc/chef/ohai_plugins/memcached-info.rb" do 
+#  source "plugins/memcached-info.rb"
+#  owner "root"
+#  group "root"
+#end

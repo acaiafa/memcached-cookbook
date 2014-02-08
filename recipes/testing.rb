@@ -7,7 +7,7 @@ instance_name = "test"
 memcached_instance instance_name do
   action :create
   ##could either use node[:ipaddress] or one from the ohai attribute
-  bind_ip node[:memcache][:test]
+  bind_ip node[:memcached][:test]
   port 11211
   max_connections 4096
   cachesize 4096
