@@ -58,7 +58,7 @@ end
 
 OHAI Attribute
 --------------
-I put together an OHAI attribute that allows you to create a node attribute called memcached[:instance_name]. You will have to add the instance names to this file.  Here is the code for the OHAI attribute.  If you have a better way of doing this please lets change it around. 
+I put together an OHAI attribute that allows you to create a node attribute called memcached[:instance_name]. You will have to add the instance names to this file.  Here is the code for the OHAI attribute.  If you have a better way of doing this please lets change it around. The get_int_info will also need to be specific to you. 
 ```
 #memcached ips
 provides "memcache"
