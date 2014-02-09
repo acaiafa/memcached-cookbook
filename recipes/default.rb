@@ -26,8 +26,8 @@ file "#{node[:memcached][:options_dir]}/memcached" do
 end
 
 ##add ohai plugin
-#cookbook_file "/etc/chef/ohai_plugins/memcached-info.rb" do 
-#  source "plugins/memcached-info.rb"
-#  owner "root"
-#  group "root"
-#end
+cookbook_file "/etc/chef/ohai_plugins/memcached-info.rb" do 
+  source "plugins/memcached-info.rb"
+  owner "root"
+  group "root"
+end
