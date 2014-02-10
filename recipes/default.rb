@@ -8,7 +8,7 @@ package "memcached" do
 end
 
 # removing default init script and sysconfig settings
-case node[:platform_family:]
+case node[:platform_family]
 when 'centos', 'redhat', 'amazon', 'scientific'
   file "#{node[:memcached][:init_dir]}/memcached" do
     action :delete
