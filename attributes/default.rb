@@ -18,8 +18,8 @@ default[:memcached][:options] = ""
 default[:memcached][:init_dir] = "/etc/init.d"
 
 
-case node['platform_family']
-when 'fedora', 'rhel', 'centos'
+case node[:platform_family]
+when  'centos', 'redhat', 'amazon', 'scientific'
   default[:memcached][:config_dir] = "/etc/sysconfig"
   default[:memcached][:init_dir] = "/etc/init.d"
 when 'ubuntu', 'debian'

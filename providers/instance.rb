@@ -1,5 +1,5 @@
 action :create do
-  case node['platform_family']
+  case node[:platform_family]
   when 'redhat','centos','fedora'
     template "#{node[:memcached][:config_dir]}/memcached-#{new_resource.name}" do
       source "memcached-config-cent.erb"
