@@ -79,6 +79,30 @@ int_info = Hash[*split_int_info]
 Basically all this does is runs a command to find your IP info on your machine your deploying this cookbook to. You will add whatever interface you normally use to this attribute at the top. The way I did my interface naming convention for my memcached nodes was very simple "eth0:instance_name". This made it very easy for me to add multiple instances to the same host and have different start scripts for each. There is slight manual intervention but this is no means a perfect cookbook just something that worked.
 
 
-Authors
+License & Authors
 -------
 - Author:: Anthony Caiafa (<2600.ac@gmail.com>)
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2014 Anthony Caiafa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
