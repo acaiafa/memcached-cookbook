@@ -8,6 +8,7 @@ name            "memcached"
 
 supports 'centos'
 supports 'redhat'
+supports 'rhel'
 supports 'fedora'
 supports 'ubuntu'
 supports 'debian'

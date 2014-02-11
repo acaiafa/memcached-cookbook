@@ -1,6 +1,6 @@
 action :create do
   case node[:platform_family]
-  when 'redhat','centos','fedora'
+  when 'rhel','centos','fedora', 'amazon', 'scientific'
     template "#{node[:memcached][:config_dir]}/memcached-#{new_resource.name}" do
       source "memcached-config-cent.erb"
       owner "root"
@@ -32,7 +32,6 @@ action :create do
       action [ :enable, :start ]
       supports :restart => true, :start => true, :stop => true, :status => true
     end
-
 
   when 'ubuntu', 'debian'
     template "#{node[:memcached][:config_dir]}/memcached_#{new_resource.name}.conf" do

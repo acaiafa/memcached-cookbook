@@ -6,10 +6,10 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: do_ubuntu_12.04_11.8.2
+  - name: do_centos-6.5_chef-latest
     driver_config:
       provider: virtualbox
-      box: do_ubuntu_12.04_11.8.2
+      box: do_centos-6.5_chef-latest
       require_chef_omnibus: true
 suites:
   - name: memcached
@@ -18,4 +18,4 @@ suites:
     attributes:
       memcached:
         test: "127.0.0.1"
-      platform_family: "debian"
+      platform_family: "redhat"
