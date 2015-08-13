@@ -12,9 +12,6 @@ module MemcachedCookbook
       include Poise
       provides(:memcached_instance)
       include PoiseService::ServiceMixin
-      actions(:create, :delete)
-      default_action(:create)
-
 
       # @!attribute config_name
       # @return [String]
@@ -38,7 +35,7 @@ module MemcachedCookbook
       include PoiseService::ServiceMixin
       include MemcachedCookbook::Helpers
 
-      def action_create
+      def action_enable
         notifying_block do
           # Install memcached package 
           package "memcached" do
@@ -58,9 +55,11 @@ module MemcachedCookbook
             cookbook "memcached"
           end
         end
+        super
       end
 
       def action_delete
+        super 
         notifying_block do 
           directory "#{config_dir}/#{file_name}#{new_resource.instance}.conf" do
             action :delete
