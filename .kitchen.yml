@@ -1,21 +1,17 @@
 ---
-driver:
-  name: vagrant
-
+driver_plugin: vagrant
 provisioner:
   name: chef_zero
 
 platforms:
-  - name: do_centos-6.5_chef-latest
-    driver_config:
-      provider: virtualbox
-      box: do_centos-6.5_chef-latest
-      require_chef_omnibus: true
+  - name: ubuntu-14.04
+  - name: ubuntu-12.04
+  - name: centos-7.1
+  - name: centos-6.6
+  - name: centos-5.11
+
 suites:
-  - name: memcached
-    run_list:
-      - recipe[memcached::testing]
-    attributes:
-      memcached:
-        test: "127.0.0.1"
-      platform_family: "redhat"
+- name: default
+  run_list:
+    - recipe[memcached-instance-test::default]
+  attributes:
