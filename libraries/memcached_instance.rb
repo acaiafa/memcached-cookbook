@@ -54,9 +54,7 @@ module MemcachedCookbook
             source "memcached-config-#{node.platform_family}.erb"
             user "root"
             group "root"
-            variables(
-              config: new_resource
-            )
+            variables(config: new_resource)
             cookbook "memcached"
           end
         end
@@ -64,19 +62,9 @@ module MemcachedCookbook
 
       def action_delete
         notifying_block do 
-          directory config_dir do
+          directory "#{config_dir}/#{file_name}#{new_resource.instance}.conf" do
             action :delete
           end
-        end
-      end
-
-      def start_command
-        start = "/usr/bin/memcached -d -m #{new_resource.cachesize} -p #{new_resource.port} -u #{new_resource.service_user} -l #{new_resource.bind_ip} -c #{new_resource.max_connections} -P /var/run/memcached.pid"
-        case new_resource.options
-        when true
-          "#{start} #{options}"
-        when false
-          "#{start}"
         end
       end
 
