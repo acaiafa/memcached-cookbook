@@ -58,7 +58,7 @@ module MemcachedCookbook
         super
       end
 
-      def action_delete
+      def action_disable
         super 
         notifying_block do 
           directory "#{config_dir}/#{file_name}#{new_resource.instance}.conf" do
