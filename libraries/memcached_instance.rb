@@ -49,7 +49,7 @@ module MemcachedCookbook
             action :delete
           end
 
-          template "#{new_resource.instance} :create #{config_dir}/#{file_name}#{new_resource.instance}" do
+          template "#{new_resource.instance} :create #{config_dir}/#{file_name}#{new_resource.instance}.conf" do
             path "#{config_dir}/#{file_name}#{new_resource.instance}.conf"
             source "memcached-config-#{node.platform_family}.erb"
             user "root"
@@ -80,9 +80,8 @@ module MemcachedCookbook
         end
       end
 
-
-      def service_options
-        service.service_name("memcached-#{new_resource.instance}")
+      def service_options(service)
+        service.service_name("memcached")
         service.command(start_command)
         service.directory('/var/run')
         service.user(new_resource.service_user)
