@@ -10,5 +10,5 @@ supports 'redhat', '>= 5.8'
 supports 'centos', '>= 5.8'
 supports 'ubuntu', '>= 12.04'
 
-depends 'poise', '~> 2.0'
+depends 'poise', '~> 2.2'
 depends 'poise-service', '~> 1.0'

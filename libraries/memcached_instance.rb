@@ -42,8 +42,10 @@ module MemcachedCookbook
             action :install
           end
 
-          file "/etc/memcached.conf" do
-            action :delete
+          %w{/etc/memcached.conf /etc/init.d/memcached}.each do |c|
+            file c do
+              action :delete
+            end
           end
 
           template "#{new_resource.instance} :create #{config_dir}/#{file_name}#{new_resource.instance}.conf" do
@@ -67,9 +69,18 @@ module MemcachedCookbook
         end
       end
 
+      def start_command
+        start = "/usr/bin/memcached -m #{new_resource.cachesize} -p #{new_resource.port} -u #{new_resource.service_user} -l #{new_resource.bind_ip} -c #{new_resource.max_connections} -P /var/run/memcached.pid"
+        if new_resource.options.nil?
+          "#{start}"
+        else
+          "#{start} #{new_resource.options}"
+        end
+      end
+
       def service_options(service)
-        service.service_name("memcached")
-        service.command(start_command)
+        service.service_name("memcached-#{new_resource.instance}")
+        service.command("#{start_command}")
         service.directory('/var/run')
         service.user(new_resource.service_user)
         service.restart_on_update(true)
