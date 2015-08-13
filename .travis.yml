@@ -3,6 +3,7 @@ language: ruby
 notifications:
   slack: blpsi:eHp3Czg42iGzaTgG8sAFeD9v
 script:
+  - chmod -R a+x bin/
   - bin/rubocop
   - bin/foodcritic .
   - bin/rspec
