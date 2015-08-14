@@ -36,9 +36,22 @@ module MemcachedCookbook
 
       def action_enable
         notifying_block do
+
+          if node.platform_family == 'debian'
+            execute 'disable auto-start' do
+              command 'echo exit 101 > /usr/sbin/policy-rc.d ; chmod +x /usr/sbin/policy-rc.d'
+            end
+          end
+
           # Install memcached package
           package 'memcached' do
             action :install
+          end
+
+          if node.platform_family == 'debian'
+            execute 'undo service disable hack' do
+              command 'echo exit 0 > /usr/sbin/policy-rc.d'
+            end
           end
 
           %w{/etc/memcached.conf /etc/init.d/memcached}.each do |c|
