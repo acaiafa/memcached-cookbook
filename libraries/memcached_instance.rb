@@ -36,7 +36,6 @@ module MemcachedCookbook
 
       def action_enable
         notifying_block do
-
           if node.platform_family == 'debian'
             execute 'disable auto-start' do
               command 'echo exit 101 > /usr/sbin/policy-rc.d ; chmod +x /usr/sbin/policy-rc.d'
