@@ -1,5 +1,5 @@
 # Memcached Cookbook
-
+[![Build Status](https://travis-ci.org/acaiafa/memcached-cookbook.svg?branch=master)](https://travis-ci.org/acaiafa/memcached-cookbook.svg?branch=master)
 [Application cookbook][0] which installs and configures the [memcached][1].
 
 ## Usage
