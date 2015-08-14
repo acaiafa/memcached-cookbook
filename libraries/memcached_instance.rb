@@ -18,13 +18,12 @@ module MemcachedCookbook
       attribute(:instance, kind_of: String, name_attribute: true)
 
       attribute(:bind_ip, kind_of: String, default: '127.0.0.1')
-      attribute(:port, kind_of: Integer, default: 11211)
+      attribute(:port, kind_of: String, default: '11211')
       attribute(:max_connections, kind_of: Integer, default: 1024)
       attribute(:cachesize, kind_of: Integer, default: 64)
       attribute(:service_user, kind_of: String, default: 'memcache')
       attribute(:enabled, equal_to: %w{yes no}, default: 'yes')
       attribute(:options, kind_of: [String, NilClass], default: nil)
-
     end
   end
 
