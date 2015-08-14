@@ -17,18 +17,18 @@ module MemcachedCookbook
       # @return [String]
       attribute(:instance, kind_of: String, name_attribute: true)
 
-      attribute(:bind_ip, kind_of: String, default:  '127.0.0.1')
-      attribute(:port, kind_of:  Integer, default:  11211)
-      attribute(:max_connections, kind_of:  Integer, default:  1024)
-      attribute(:cachesize, kind_of:  Integer, default:  64)
-      attribute(:service_user, kind_of:  String, default:  'memcache')
-      attribute(:enabled, equal_to: %w{yes no},  default:  'yes')
+      attribute(:bind_ip, kind_of: String, default: '127.0.0.1')
+      attribute(:port, kind_of: Integer, default: 11211)
+      attribute(:max_connections, kind_of: Integer, default: 1024)
+      attribute(:cachesize, kind_of: Integer, default: 64)
+      attribute(:service_user, kind_of: String, default: 'memcache')
+      attribute(:enabled, equal_to: %w{yes no}, default: 'yes')
       attribute(:options, kind_of: [String, NilClass], default: nil)
 
     end
   end
 
-  module Provider 
+  module Provider
     class MemcachedInstance < Chef::Provider
       include Poise
       provides(:memcached_instance)
@@ -37,8 +37,8 @@ module MemcachedCookbook
 
       def action_enable
         notifying_block do
-          # Install memcached package 
-          package "memcached" do
+          # Install memcached package
+          package 'memcached' do
             action :install
           end
 
@@ -51,18 +51,18 @@ module MemcachedCookbook
           template "#{new_resource.instance} :create #{config_dir}/#{file_name}#{new_resource.instance}.conf" do
             path "#{config_dir}/#{file_name}#{new_resource.instance}.conf"
             source "memcached-config-#{node.platform_family}.erb"
-            user "root"
-            group "root"
+            user 'root'
+            group 'root'
             variables(config: new_resource)
-            cookbook "memcached"
+            cookbook 'memcached'
           end
         end
         super
       end
 
       def action_disable
-        super 
-        notifying_block do 
+        super
+        notifying_block do
           directory "#{config_dir}/#{file_name}#{new_resource.instance}.conf" do
             action :delete
           end

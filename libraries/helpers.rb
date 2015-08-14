@@ -4,19 +4,19 @@ module MemcachedCookbook
 
     def config_dir
       case node.platform_family
-      when "rhel"
-        "/etc/sysconfig"
+      when 'rhel'
+        '/etc/sysconfig'
       else
-        "/etc"
+        '/etc'
       end
     end
 
     def file_name
       case node.platform_family
-      when "rhel"
-        "memcached-"
+      when 'rhel'
+        'memcached-'
       else
-        "memcached_"
+        'memcached_'
       end
     end
   end
